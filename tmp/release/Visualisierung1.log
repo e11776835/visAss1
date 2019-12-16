@@ -1,0 +1,16 @@
+﻿  MOC MainWindow.h
+  moc_GLWidget.cpp
+  moc_MainWindow.cpp
+  Camera.cpp
+src\Camera.cpp(21): warning C4305: '=': truncation from 'double' to 'float'
+src\Camera.cpp(92): warning C4305: '=': truncation from 'double' to 'float'
+  GLWidget.cpp
+  Main.cpp
+  MainWindow.cpp
+  Volume.cpp
+  Generating code
+  27 of 539 functions ( 5.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    53 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Visualisierung1.vcxproj -> C:\Users\tklein\ownCloud\teaching\Vis1\2019\Uebung_1\framework_students\bin\release\Visualisierung1.exe
