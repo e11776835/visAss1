@@ -156,6 +156,7 @@ void GLWidget::paintGL()
 	// 1. render front faces to FBO
 
 	// ToDo
+	m_FBO_frontFaces->bind;
 
 	// 2. render back faces to FBO
 	

@@ -1,3 +1,17 @@
-﻿  GLWidget.cpp
-  Visualisierung1.vcxproj -> C:\Users\tklein\ownCloud\teaching\Vis1\2018\Uebung_1\framework_students\bin\debug\Visualisierung1.exe
-  Visualisierung1.vcxproj -> bin\debug\Visualisierung1.pdb (Full PDB)
+﻿  Compiling MainWindow..h using MOC
+  Compiling GLWidget..h using MOC
+  UIC MainWindow.ui
+  moc_GLWidget.cpp
+  moc_MainWindow.cpp
+  Camera.cpp
+d:\studium\semester_5\visualisierung1\aufgaben\ass1\src\camera.cpp(21): warning C4305: "=": Verkürzung von "double" in "float"
+d:\studium\semester_5\visualisierung1\aufgaben\ass1\src\camera.cpp(92): warning C4305: "=": Verkürzung von "double" in "float"
+  GLWidget.cpp
+  Main.cpp
+  MainWindow.cpp
+  Volume.cpp
+  Code wird generiert...
+  bstrlib.c
+  glsw.c
+  Code wird generiert...
+  Visualisierung1.vcxproj -> D:\studium\Semester_5\Visualisierung1\Aufgaben\Ass1\bin\debug\Visualisierung1.exe
