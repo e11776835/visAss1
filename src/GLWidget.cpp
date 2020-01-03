@@ -151,18 +151,18 @@ void GLWidget::paintGL()
 	m_programCube->setUniformValue(m_programCube->uniformLocation("projMatrix"), projection);
 
 	// 1. render front faces to FBO
+	m_FBO_frontFaces->bind();
 	glCullFace(GL_BACK);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_FBO_frontFaces->bind();
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 	m_FBO_frontFaces->release();
 
 	// 2. render back faces to FBO
+	m_FBO_backFaces->bind();
 	glCullFace(GL_FRONT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	m_FBO_backFaces->bind();
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
 	m_FBO_backFaces->release();
 

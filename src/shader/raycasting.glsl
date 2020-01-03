@@ -12,6 +12,7 @@ void main()
 	texCoord = vec2((vertex.x + 1) * 0.5, (vertex.y + 1) * 0.5);
 }
 
+
 -- Fragment
 
 uniform sampler2D frontFaces;
@@ -26,7 +27,7 @@ out vec4 fragColor;
 void main()
 {	
 	vec3 frontTex = texture(frontFaces, texCoord).rgb;
-	vec3 backTex = texture(frontFaces, texCoord).rgb;
+	vec3 backTex = texture(backFaces, texCoord).rgb;
 
 	vec3 ray = frontTex - backTex;
 	vec3 reverse_ray = backTex - frontTex;
