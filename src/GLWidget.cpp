@@ -83,11 +83,8 @@ GLushort quad_elements[] =
 	0, 2, 3
 };
 
-
 const QString shaderPath1 = "/src/shader/cube.glsl";
 const QString shaderPath2 = "/src/shader/raycasting.glsl";
-
-
 
 GLWidget::GLWidget(QWidget *parent, MainWindow *mainWindow)
 	: QOpenGLWidget(parent),
@@ -154,17 +151,50 @@ void GLWidget::paintGL()
 	m_programCube->setUniformValue(m_programCube->uniformLocation("projMatrix"), projection);
 
 	// 1. render front faces to FBO
+	glCullFace(GL_BACK);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// ToDo
-	m_FBO_frontFaces->bind;
+	m_FBO_frontFaces->bind();
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
+	m_FBO_frontFaces->release();
 
 	// 2. render back faces to FBO
-	
-	// ToDo
+	glCullFace(GL_FRONT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	m_FBO_backFaces->bind();
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, 0);
+	m_FBO_backFaces->release();
+
+	m_programCube->release();
 
 	// 3. render the volume
-	
-	// ToDo
+	glCullFace(GL_BACK);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	QOpenGLVertexArrayObject::Binder vao(&m_vaoQuad);
+
+	// binding tex for frontFaces
+	glActiveTexture(GL_TEXTURE0);
+	m_programVolume->setUniformValue("frontFaces", 0);
+	glBindTexture(GL_TEXTURE_2D, m_FBO_frontFaces->texture());
+
+	// binding tex for backFaces
+	glActiveTexture(GL_TEXTURE1);
+	m_programVolume->setUniformValue("backFaces", 1);
+	glBindTexture(GL_TEXTURE_2D, m_FBO_backFaces->texture());
+
+	// binding tex for volume
+	glActiveTexture(GL_TEXTURE2);
+	m_programVolume->setUniformValue("volume", 2);
+	m_VolumeTexture->bind();
+
+	// set renderingMode
+	m_programVolume->bind();
+
+	m_programVolume->setUniformValue(m_programVolume->uniformLocation("renderingMode"), m_renderingMode);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
+
+	m_programVolume->release();
 }
 
 void GLWidget::initializeGL()
@@ -186,7 +216,6 @@ void GLWidget::initializeGL()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
-
 
 	// create programs
 	m_programCube = new QOpenGLShaderProgram();

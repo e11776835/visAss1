@@ -10,19 +10,19 @@ layout(location = 1) in vec3 texCoord;
 
 out vec3 texCoordVar;
 
-
 void main()
 {
-	// ToDo
+	texCoordVar = texCoord;
+	gl_Position = projMatrix * mvMatrix * vec4(vertex, 1);
 }
+
 
 -- Fragment
 
 in vec3 texCoordVar;
-
 out vec4 fragColor;
 
 void main()
 {
-   // ToDo
+   fragColor = vec4(texCoordVar, 1);
 }

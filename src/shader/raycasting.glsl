@@ -8,8 +8,10 @@ out vec2 texCoord;
 
 void main()
 {
-	// ToDo
+	gl_Position = vec4(vertex, 1);
+	texCoord = vec2((vertex.x + 1) * 0.5, (vertex.y + 1) * 0.5);
 }
+
 
 -- Fragment
 
@@ -24,23 +26,20 @@ out vec4 fragColor;
 
 void main()
 {
-	// ToDo
-	
+	vec3 frontTex = texture(frontFaces, texCoord).rgb;
+	vec3 backTex = texture(frontFaces, texCoord).rgb;
 	
 	switch(renderingMode)
 	{
 		case 0: //render front faces
 		{
-			
-			
+			fragColor = vec4(frontTexture, 1);
 			break;
 		}
 		
 		case 1: //render back faces
 		{
-			
-			
-			
+			fragColor = vec4(backTexture, 1);
 			break;
 		}
 		
@@ -48,7 +47,7 @@ void main()
 		{
 			
 			
-			
+	
 			break;
 		}
 		case 3: //render volume (Alpha-Compositing)
