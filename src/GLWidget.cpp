@@ -169,9 +169,11 @@ void GLWidget::paintGL()
 	m_programCube->release();
 
 	// 3. render the volume
+	m_programVolume->bind();
+
 	glCullFace(GL_BACK);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	QOpenGLVertexArrayObject::Binder vao(&m_vaoQuad);
+	QOpenGLVertexArrayObject::Binder volumeBinder(&m_vaoQuad);
 
 	// binding tex for frontFaces
 	glActiveTexture(GL_TEXTURE0);
@@ -188,12 +190,8 @@ void GLWidget::paintGL()
 	m_programVolume->setUniformValue("volume", 2);
 	m_VolumeTexture->bind();
 
-	// set renderingMode
-	m_programVolume->bind();
-
 	m_programVolume->setUniformValue(m_programVolume->uniformLocation("renderingMode"), m_renderingMode);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, 0);
-
 	m_programVolume->release();
 }
 

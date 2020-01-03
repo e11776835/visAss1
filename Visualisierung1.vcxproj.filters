@@ -72,4 +72,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shader\raycasting.glsl" />
+    <None Include="src\shader\cube.glsl" />
+  </ItemGroup>
 </Project>
