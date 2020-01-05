@@ -87,22 +87,22 @@ void main()
 				} else if (src < 0.3) {
 					color_1 = vec3(0, 0, 0);
 					color_2 = vec3(0, 1, 0);
-					temp = 0.005;
+					temp = 0.01;
 
 				} else if (src < 0.5) {
 					color_1 = vec3(0, 1, 0);
 					color_2 = vec3(1, 0, 0);
-					temp = 0.01;
+					temp = 0.05;
 
 				}  else if (src < 0.6) {
 					color_1 = vec3(1, 0, 0);
 					color_2 = vec3(1, 1, 0);
-					temp = 0.05;
+					temp = 0.1;
 
 				}  else if (src < 0.8) {
 					color_1 = vec3(0, 1, 0);
 					color_2 = vec3(1, 1, 1);
-					temp = 0.1;
+					temp = 0.2;
 
 				} else {
 					temp = 0;
